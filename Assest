@@ -1,0 +1,1777 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Declaration of Assets and Liabilities (2025–26) - Bihar Govt.</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- html2pdf.js bundle for direct client-side PDF export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <!-- Google Fonts: Inter for UI & Serif for Authentic Official Gazette Look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;500;600;700&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            official: ['"Tinos"', '"Times New Roman"', 'Times', 'serif']
+          },
+          colors: {
+            govblue: {
+              50: '#f0f5fa',
+              100: '#e1ecf5',
+              700: '#1b4d79',
+              800: '#143c61',
+              900: '#0e2b47'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #94a3b8;
+      border-radius: 4px;
+    }
+
+    /* Print & Exact A4 Geometry */
+    .a4-sheet {
+      width: 210mm;
+      min-height: 297mm;
+      max-height: 297mm;
+      height: 297mm;
+      padding: 12mm 15mm 10mm 15mm;
+      margin: 0 auto 24px auto;
+      background: white;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+      box-sizing: border-box;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      page-break-after: always;
+      break-after: page;
+    }
+
+    /* Table borders replicating official standard */
+    .gov-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1.5px solid #111827;
+      font-size: 11.5px;
+      line-height: 1.28;
+    }
+    .gov-table th, .gov-table td {
+      border: 1px solid #111827;
+      padding: 4px 6px;
+      vertical-align: top;
+      color: #0f172a;
+    }
+    .gov-table th {
+      background-color: #f8fafc;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* Strict Media Print rules */
+    @media print {
+      body {
+        background: #ffffff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .no-print {
+        display: none !important;
+      }
+      #preview-pane {
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        overflow: visible !important;
+      }
+      .a4-sheet {
+        box-shadow: none !important;
+        margin: 0 !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        min-height: 297mm !important;
+        max-height: 297mm !important;
+        padding: 10mm 14mm 8mm 14mm !important;
+        page-break-after: always !important;
+        page-break-inside: avoid !important;
+        break-after: page !important;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 font-sans text-slate-800 min-h-screen flex flex-col">
+
+  <!-- TOP HEADER / ACTION BAR -->
+  <header class="no-print bg-govblue-900 text-white shadow-md sticky top-0 z-40 border-b border-govblue-700">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- Brand & Title -->
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-lg bg-amber-500 flex items-center justify-center font-bold text-slate-900 shadow-sm text-lg">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+        </div>
+        <div>
+          <h1 class="font-bold text-base md:text-lg leading-tight flex items-center gap-2">
+            Asset & Liability Declaration Generator
+            <span class="text-xs bg-amber-400 text-slate-900 font-semibold px-2 py-0.5 rounded">Year 2025–26</span>
+          </h1>
+          <p class="text-xs text-slate-300">Prescribed Bihar Govt. & BPSC Teacher Standard Format (A4 4-Page Format)</p>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="flex flex-wrap items-center gap-2">
+        <!-- Sample Loader -->
+        <button id="btn-load-sample" class="px-3 py-1.5 bg-govblue-700 hover:bg-govblue-800 text-amber-200 border border-amber-300/30 text-xs font-medium rounded shadow transition flex items-center gap-1.5" title="Fill with Ramesh Kumar's official example">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+          Load Ramesh Kumar Sample
+        </button>
+
+        <!-- Auto Fill Nil -->
+        <button id="btn-fill-nil" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 text-xs font-medium rounded transition flex items-center gap-1.5" title="Set all empty fields to Nil">
+          <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+          Fill Blanks with "Nil"
+        </button>
+
+        <!-- Clear All -->
+        <button id="btn-clear-modal" class="px-2.5 py-1.5 bg-slate-800 hover:bg-red-900/60 text-slate-300 hover:text-red-200 border border-slate-700 text-xs font-medium rounded transition" title="Clear all fields">
+          Clear
+        </button>
+
+        <!-- View Switcher -->
+        <div class="hidden md:flex bg-govblue-800 p-0.5 rounded border border-govblue-700 text-xs font-medium">
+          <button id="btn-view-split" class="px-2.5 py-1 rounded bg-amber-400 text-slate-900 font-semibold transition">Split View</button>
+          <button id="btn-view-form" class="px-2.5 py-1 rounded text-slate-300 hover:text-white transition">Form Only</button>
+          <button id="btn-view-preview" class="px-2.5 py-1 rounded text-slate-300 hover:text-white transition">Preview Only</button>
+        </div>
+
+        <!-- Download & Print -->
+        <div class="flex items-center gap-1.5 pl-1">
+          <button onclick="window.print()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded shadow transition flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+            Print / Save PDF
+          </button>
+          <button id="btn-download-pdf" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded shadow transition flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            Download PDF
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- NOTIFICATION TOAST -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 bg-slate-900 text-white text-xs px-4 py-2.5 rounded-lg shadow-xl border border-slate-700 transform translate-y-20 opacity-0 transition duration-300 pointer-events-none flex items-center gap-2">
+    <span id="toast-icon">✓</span>
+    <span id="toast-msg">Action completed</span>
+  </div>
+
+  <!-- CONFIRMATION MODAL (Replaces window.confirm) -->
+  <div id="confirm-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-xl shadow-2xl max-w-sm w-full p-6 text-center border border-slate-200">
+      <div class="w-12 h-12 rounded-full bg-red-100 text-red-600 flex items-center justify-center mx-auto mb-3">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+      </div>
+      <h3 class="text-base font-bold text-slate-800">Clear All Details?</h3>
+      <p class="text-xs text-slate-500 mt-1 mb-5">This will erase all personal details, assets, and liabilities entered so far.</p>
+      <div class="flex justify-center gap-3">
+        <button id="modal-cancel-btn" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition">Cancel</button>
+        <button id="modal-confirm-btn" class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold rounded-lg transition">Yes, Clear All</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN APP CONTAINER -->
+  <main class="flex-1 flex flex-col md:flex-row overflow-hidden relative">
+
+    <!-- LEFT COLUMN: INTERACTIVE FORM EDITOR -->
+    <section id="form-pane" class="w-full md:w-1/2 lg:w-5/12 bg-white border-r border-slate-200 flex flex-col h-[calc(100vh-62px)] overflow-y-auto no-print">
+      
+      <!-- Stepper / Section Tabs -->
+      <div class="sticky top-0 bg-slate-50 z-20 border-b border-slate-200 p-2">
+        <div class="grid grid-cols-5 gap-1 text-[11px] font-semibold text-center">
+          <button data-tab="tab-1" class="tab-btn active px-1 py-1.5 rounded bg-govblue-800 text-white shadow-sm flex flex-col items-center">
+            <span>Step 1</span>
+            <span class="text-[9px] font-normal truncate w-full">Personal</span>
+          </button>
+          <button data-tab="tab-2" class="tab-btn px-1 py-1.5 rounded bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 flex flex-col items-center">
+            <span>Step 2</span>
+            <span class="text-[9px] font-normal truncate w-full">Movable</span>
+          </button>
+          <button data-tab="tab-3" class="tab-btn px-1 py-1.5 rounded bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 flex flex-col items-center">
+            <span>Step 3</span>
+            <span class="text-[9px] font-normal truncate w-full">Immovable</span>
+          </button>
+          <button data-tab="tab-4" class="tab-btn px-1 py-1.5 rounded bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 flex flex-col items-center">
+            <span>Step 4</span>
+            <span class="text-[9px] font-normal truncate w-full">Liabilities</span>
+          </button>
+          <button data-tab="tab-5" class="tab-btn px-1 py-1.5 rounded bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 flex flex-col items-center">
+            <span>Step 5</span>
+            <span class="text-[9px] font-normal truncate w-full">Taxes & PRAN</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tab Content Area -->
+      <form id="asset-form" class="p-4 space-y-5 flex-1" onsubmit="event.preventDefault()">
+        
+        <!-- STEP 1: EMPLOYEE & FAMILY DETAILS -->
+        <div id="tab-1" class="tab-panel space-y-4">
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-900">
+            <strong>Mandatory Preamble:</strong> These details form the title section and preamble paragraph on Page 1 of the official declaration.
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Financial Year</label>
+              <input type="text" id="financialYear" class="w-full text-xs p-2 border border-slate-300 rounded focus:ring-1 focus:ring-govblue-700" value="2025-26">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Employee Full Name</label>
+              <input type="text" id="employeeName" class="w-full text-xs p-2 border border-slate-300 rounded uppercase font-semibold focus:ring-1 focus:ring-govblue-700" placeholder="e.g. RAMESH KUMAR">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Relation Type</label>
+              <select id="relationType" class="w-full text-xs p-2 border border-slate-300 rounded bg-white focus:ring-1 focus:ring-govblue-700">
+                <option value="son of">son of</option>
+                <option value="daughter of">daughter of</option>
+                <option value="wife of">wife of</option>
+              </select>
+            </div>
+            <div class="col-span-2">
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Father's / Husband's Name</label>
+              <input type="text" id="relativeName" class="w-full text-xs p-2 border border-slate-300 rounded uppercase focus:ring-1 focus:ring-govblue-700" placeholder="e.g. LATE RAMDHANI SINGH">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2">
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Age (Years)</label>
+              <input type="text" id="age" class="w-full text-xs p-2 border border-slate-300 rounded focus:ring-1 focus:ring-govblue-700" placeholder="e.g. 42">
+            </div>
+            <div class="col-span-2">
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Present Designation</label>
+              <input type="text" id="designation" class="w-full text-xs p-2 border border-slate-300 rounded uppercase focus:ring-1 focus:ring-govblue-700" placeholder="e.g. BPSC SCHOOL TEACHER (SENIOR SECONDARY)">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Service / Cadre Name</label>
+            <input type="text" id="cadre" class="w-full text-xs p-2 border border-slate-300 rounded uppercase focus:ring-1 focus:ring-govblue-700" placeholder="e.g. BIHAR EDUCATION SERVICE / SCHOOL TEACHER SERVICE">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Department / Office / School Full Address</label>
+            <textarea id="department" rows="2" class="w-full text-xs p-2 border border-slate-300 rounded uppercase focus:ring-1 focus:ring-govblue-700" placeholder="e.g. EDUCATION DEPARTMENT, BIHAR (GOVT. UPGRADED HIGH SCHOOL, PATNA)"></textarea>
+          </div>
+
+          <!-- DYNAMIC SPOUSE & DEPENDANTS CONTROLLER -->
+          <div class="border-t border-slate-200 pt-3 space-y-3">
+            <div class="flex items-center justify-between">
+              <div>
+                <h4 class="text-xs font-bold text-govblue-800 uppercase tracking-wider">Spouse & Dependants Columns</h4>
+                <p class="text-[10px] text-slate-500">Add or remove columns across all 4 printable pages</p>
+              </div>
+              <button type="button" id="btn-add-dependent" class="px-2.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-xs font-semibold flex items-center gap-1 shadow-sm transition">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                + Add Dependant
+              </button>
+            </div>
+
+            <!-- Spouse Column Controller -->
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-2.5">
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="flex items-center gap-2 cursor-pointer select-none">
+                  <input type="checkbox" id="includeSpouse" class="rounded text-govblue-800 focus:ring-govblue-700 h-4 w-4">
+                  <span class="text-xs font-bold text-slate-800">Include Spouse Column</span>
+                </label>
+                <span id="spouse-status-badge" class="text-[10px] px-2 py-0.5 rounded font-medium">Active</span>
+              </div>
+              <div id="spouse-input-container">
+                <label class="block text-[10px] font-medium text-slate-500 mb-0.5">Spouse Name (appears in column headers)</label>
+                <input type="text" id="spouseName" class="w-full text-xs p-1.5 border border-slate-300 rounded uppercase focus:ring-1 focus:ring-govblue-700" placeholder="e.g. ANITA KUMARI">
+              </div>
+            </div>
+
+            <!-- Dependants List -->
+            <div>
+              <div class="text-[11px] font-semibold text-slate-700 mb-1.5 flex items-center justify-between">
+                <span>Dependants List (<span id="dep-count-badge">0</span>)</span>
+                <span class="text-[10px] text-slate-400 italic">Name updates table header live</span>
+              </div>
+              <div id="dependents-list-container" class="space-y-2">
+                <!-- Dynamically rendered list of dependants with Remove buttons -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: MOVABLE ASSETS (PART A) -->
+        <div id="tab-2" class="tab-panel hidden space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-bold text-govblue-800 uppercase">Part A: Movable Assets (7 Items)</h3>
+            <span class="text-[11px] text-slate-500">Rendered on Page 1</span>
+          </div>
+
+          <p class="text-[11px] text-slate-500 italic">Enter amounts and account/registration numbers. Multiple lines are preserved cleanly in the PDF table.</p>
+
+          <div id="movable-inputs-container" class="space-y-4">
+            <!-- Dynamically populated or structured cards for 7 Movable rows -->
+          </div>
+        </div>
+
+        <!-- STEP 3: IMMOVABLE ASSETS (PART B) -->
+        <div id="tab-3" class="tab-panel hidden space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-bold text-govblue-800 uppercase">Part B: Immovable Assets (5 Items)</h3>
+            <span class="text-[11px] text-slate-500">Rendered on Pages 2 & 3</span>
+          </div>
+          <p class="text-[11px] text-slate-500 italic">Specify Location, Survey/Khata/Khesra/Ward, Extent, and Market Value.</p>
+
+          <div id="immovable-inputs-container" class="space-y-4">
+            <!-- Dynamically populated cards for 5 Immovable rows -->
+          </div>
+        </div>
+
+        <!-- STEP 4: LIABILITIES & DUES -->
+        <div id="tab-4" class="tab-panel hidden space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-bold text-govblue-800 uppercase">Section (2): Liabilities & Govt. Dues</h3>
+            <span class="text-[11px] text-slate-500">Rendered on Page 3</span>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-700 mb-1">Outstanding Balance "As on Date"</label>
+            <input type="text" id="asOnDate" class="w-full text-xs p-2 border border-slate-300 rounded" value="10-01-2026">
+          </div>
+
+          <div id="liabilities-inputs-container" class="space-y-3">
+            <!-- Bank, FIs, and Govt Accommodation to Other Dues -->
+          </div>
+        </div>
+
+        <!-- STEP 5: TAXES & PERSONAL DETAILS (SECTION C) -->
+        <div id="tab-5" class="tab-panel hidden space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-bold text-govblue-800 uppercase">Taxes, Section C & Verification</h3>
+            <span class="text-[11px] text-slate-500">Rendered on Page 4</span>
+          </div>
+
+          <!-- Taxes -->
+          <div class="border border-slate-200 rounded-lg p-3 bg-slate-50 space-y-3">
+            <h4 class="text-xs font-bold text-slate-700 uppercase">Taxes & Other Liabilities</h4>
+            <div id="taxes-inputs-container" class="space-y-2"></div>
+          </div>
+
+          <!-- Section C Personal Details -->
+          <div class="border border-slate-200 rounded-lg p-3 bg-slate-50 space-y-3">
+            <h4 class="text-xs font-bold text-slate-700 uppercase">C. Personal Details</h4>
+            
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-[11px] font-semibold text-slate-700 mb-1">GPF / CPF / PRAN No.</label>
+                <input type="text" id="pranNo" class="w-full text-xs p-2 border border-slate-300 rounded font-mono uppercase" placeholder="e.g. PRAN-110034928172">
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-slate-700 mb-1">Gender</label>
+                <select id="gender" class="w-full text-xs p-2 border border-slate-300 rounded bg-white">
+                  <option value="M">M (Male)</option>
+                  <option value="F">F (Female)</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-[11px] font-semibold text-slate-700 mb-1">Date of Birth (DD/MM/YYYY)</label>
+                <input type="text" id="dob" class="w-full text-xs p-2 border border-slate-300 rounded" placeholder="12/04/1984">
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-slate-700 mb-1">Class / Group</label>
+                <input type="text" id="classGroup" class="w-full text-xs p-2 border border-slate-300 rounded" placeholder="Class / Group B">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-[11px] font-semibold text-slate-700 mb-1">Cadre</label>
+                <input type="text" id="personalCadre" class="w-full text-xs p-2 border border-slate-300 rounded uppercase" placeholder="e.g. B.E.S. - BIHAR EDUCATION SERVICE">
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-slate-700 mb-1">Home District</label>
+                <input type="text" id="homeDistrict" class="w-full text-xs p-2 border border-slate-300 rounded uppercase" placeholder="PATNA">
+              </div>
+            </div>
+          </div>
+
+          <!-- Verification Block -->
+          <div class="border border-slate-200 rounded-lg p-3 bg-slate-50 space-y-2">
+            <h4 class="text-xs font-bold text-slate-700 uppercase">Verification & Signature Info</h4>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-[11px] font-semibold text-slate-700 mb-1">Place of Declaration</label>
+                <input type="text" id="declPlace" class="w-full text-xs p-2 border border-slate-300 rounded uppercase" value="PATNA">
+              </div>
+              <div>
+                <label class="block text-[11px] font-semibold text-slate-700 mb-1">Date of Declaration</label>
+                <input type="text" id="declDate" class="w-full text-xs p-2 border border-slate-300 rounded" value="10/01/2026">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons inside Form -->
+        <div class="pt-4 border-t border-slate-200 flex justify-between items-center text-xs">
+          <button id="btn-prev-step" type="button" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium rounded transition">
+            &larr; Previous Step
+          </button>
+          <button id="btn-next-step" type="button" class="px-4 py-2 bg-govblue-800 hover:bg-govblue-900 text-white font-medium rounded transition">
+            Next Step &rarr;
+          </button>
+        </div>
+
+      </form>
+    </section>
+
+    <!-- RIGHT COLUMN: LIVE A4 4-PAGE PREVIEW -->
+    <section id="preview-pane" class="w-full md:w-1/2 lg:w-7/12 bg-slate-300 p-4 md:p-6 overflow-y-auto h-[calc(100vh-62px)] flex flex-col items-center">
+      
+      <!-- Preview Header Controls (No Print) -->
+      <div class="no-print w-full max-w-[210mm] flex items-center justify-between mb-4 bg-slate-800 text-white px-4 py-2 rounded-lg shadow text-xs">
+        <div class="flex items-center gap-2">
+          <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="font-semibold">Exact 4-Page Bihar Standard Preview</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-slate-300">Format: Standard A4 (210×297mm)</span>
+          <button onclick="window.print()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 px-2.5 py-1 rounded font-bold transition">
+            Print All 4 Pages
+          </button>
+        </div>
+      </div>
+
+      <!-- PDF CONTAINER (Target for Print & html2pdf) -->
+      <div id="pdf-export-content" class="w-full max-w-[210mm] font-official text-slate-900">
+
+        <!-- ==================== PAGE 1 ==================== -->
+        <article class="a4-sheet" id="page-1">
+          <div>
+            <!-- Header Titles -->
+            <div class="text-center mb-3">
+              <h2 class="text-base font-bold tracking-wide uppercase">DECLARATION OF ASSETS AND LIABILITIES</h2>
+              <h3 class="text-sm font-bold">Year <span class="pv-financialYear">2025-26</span></h3>
+            </div>
+
+            <!-- Intro Preamble -->
+            <p class="text-[12px] leading-relaxed text-justify mb-2">
+              I, <strong class="pv-employeeName font-bold">RAMESH KUMAR</strong>, 
+              <span class="pv-relationType">son of</span> <strong class="pv-relativeName font-bold">LATE RAMDHANI SINGH</strong>, 
+              aged <span class="pv-age">42</span> years, belonging to 
+              <span class="pv-cadre">BIHAR EDUCATION SERVICE / SCHOOL TEACHER SERVICE</span> service and presently working as 
+              <span class="pv-designation">BPSC SCHOOL TEACHER (SENIOR SECONDARY)</span> 
+              give herein below the details of the assets (immovable, movable, bank balance, etc.) of <span class="pv-familyPreamble">myself, my spouse and dependants*</span>:
+            </p>
+
+            <!-- Section A Heading -->
+            <div class="text-[12px] font-bold mt-1 mb-0.5">A. Details of movable assets</div>
+            <div class="text-[10px] italic mb-1.5 text-slate-700 leading-tight">(Assets in joint name indicating the extent of joint ownership will also have to be given)</div>
+
+            <!-- Movable Assets Table (Rows i through vii) -->
+            <table class="gov-table">
+              <thead id="pv-movable-thead">
+                <!-- Dynamically generated adaptive columns -->
+              </thead>
+              <tbody id="pv-movable-rows">
+                <!-- Dynamically rendered rows (i) to (vii) -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Bottom Footnotes & Page Signature -->
+          <div class="pt-2 text-[10px] leading-snug">
+            <p class="mb-1 text-slate-800">
+              <strong>Note:</strong> Value of Bonds / Shares / Debentures as per the latest market value in Stock Exchange in respect of listed companies and as per books in the case of non listed companies should be given.
+            </p>
+            <p class="mb-1 text-slate-800">
+              * Dependant here means a person substantially dependent on the income of the employee.
+            </p>
+            <div class="flex justify-between items-end mt-4 mb-2">
+              <span class="font-semibold italic text-[10.5px]">* Please sign each page of the declaration.</span>
+              <div class="text-right">
+                <div class="h-6"></div>
+                <span class="font-bold text-[11px]">(Signature of Employee)</span>
+              </div>
+            </div>
+            <div class="text-center font-bold text-[11px] border-t border-slate-400 pt-1">
+              Page 1 of 4
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== PAGE 2 ==================== -->
+        <article class="a4-sheet" id="page-2">
+          <div>
+            <!-- Section B Heading -->
+            <div class="text-[13px] font-bold mb-0.5">B. Details of Immovable assets</div>
+            <div class="text-[10px] italic mb-2 text-slate-700">[Note: Properties in joint ownership indicating the extent of joint ownership will also have to be indicated]</div>
+
+            <!-- Immovable Assets Table (Part 1: Rows i, ii, iii) -->
+            <table class="gov-table">
+              <thead id="pv-immovable-thead-page2">
+                <!-- Dynamically generated adaptive columns -->
+              </thead>
+              <tbody id="pv-immovable-rows-page2">
+                <!-- Dynamically rendered rows (i), (ii), (iii) -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Page 2 Footer -->
+          <div class="pt-2 text-[10px] leading-snug">
+            <div class="flex justify-between items-end mt-4 mb-2">
+              <span class="font-semibold italic text-[10.5px]">* Please sign each page of the declaration.</span>
+              <div class="text-right">
+                <div class="h-6"></div>
+                <span class="font-bold text-[11px]">(Signature of Employee)</span>
+              </div>
+            </div>
+            <div class="text-center font-bold text-[11px] border-t border-slate-400 pt-1">
+              Page 2 of 4
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== PAGE 3 ==================== -->
+        <article class="a4-sheet" id="page-3">
+          <div>
+            <!-- Immovable Continued Heading -->
+            <div class="text-[13px] font-bold mb-1.5">B. Details of Immovable assets (Continued)</div>
+
+            <!-- Immovable Assets Table (Part 2: Rows iv, v) -->
+            <table class="gov-table mb-4">
+              <thead id="pv-immovable-thead-page3">
+                <!-- Dynamically generated adaptive columns -->
+              </thead>
+              <tbody id="pv-immovable-rows-page3">
+                <!-- Dynamically rendered rows (iv), (v) -->
+              </tbody>
+            </table>
+
+            <!-- Section 2: Liabilities & Overdues -->
+            <div class="text-[12px] font-bold leading-tight mb-0.5">
+              (2) I give herein below the details of my liabilities / overdues to public financial institutions and government dues:-
+            </div>
+            <div class="text-[10px] italic mb-1.5 text-slate-700">[Note: Please give separate details for each item)</div>
+
+            <!-- Liabilities Table -->
+            <table class="gov-table">
+              <thead>
+                <tr>
+                  <th style="width: 8%;">Sr.<br>No.</th>
+                  <th style="width: 32%;">Description</th>
+                  <th style="width: 42%;">Name & address of Bank / Financial Institutions(s) / Department (s)</th>
+                  <th style="width: 18%;">Amount outstanding as on <span class="pv-asOnDate font-bold">10-01-2026</span></th>
+                </tr>
+              </thead>
+              <tbody id="pv-liabilities-rows">
+                <!-- Dynamically rendered liabilities (a)(i) to (iii)(f) -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Page 3 Footer -->
+          <div class="pt-2 text-[10px] leading-snug">
+            <div class="flex justify-between items-end mt-4 mb-2">
+              <span class="font-semibold italic text-[10.5px]">* Please sign each page of the declaration.</span>
+              <div class="text-right">
+                <div class="h-6"></div>
+                <span class="font-bold text-[11px]">(Signature of Employee)</span>
+              </div>
+            </div>
+            <div class="text-center font-bold text-[11px] border-t border-slate-400 pt-1">
+              Page 3 of 4
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== PAGE 4 ==================== -->
+        <article class="a4-sheet" id="page-4">
+          <div>
+            <!-- (b) Taxes & Other Liabilities Heading -->
+            <div class="text-[12.5px] font-bold mb-1.5">(b) Taxes & Other Liabilities (Continued):</div>
+
+            <!-- Taxes Table -->
+            <table class="gov-table mb-4">
+              <thead>
+                <tr>
+                  <th style="width: 8%;">Sr.<br>No.</th>
+                  <th style="width: 32%;">Description</th>
+                  <th style="width: 42%;">Name & address of Bank / Financial Institutions(s) / Department (s)</th>
+                  <th style="width: 18%;">Amount outstanding as on <span class="pv-asOnDate font-bold">10-01-2026</span></th>
+                </tr>
+              </thead>
+              <tbody id="pv-taxes-rows">
+                <!-- Dynamically rendered Taxes (b)(i) to (b)(iv) -->
+              </tbody>
+            </table>
+
+            <!-- Section C: Personal Details -->
+            <div class="text-[12.5px] font-bold mb-1.5 uppercase">C. PERSONAL DETAILS</div>
+            
+            <table class="gov-table mb-4" style="border: 1.5px solid #111827;">
+              <tbody>
+                <tr>
+                  <td style="width: 25%; font-weight: bold; background: #fbfcfd;">GPF/CPF/PRAN No.</td>
+                  <td style="width: 3%; text-align: center; font-weight: bold;">:</td>
+                  <td style="width: 72%;" class="pv-pran font-mono font-bold">PRAN-110034928172</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; background: #fbfcfd;">Gender</td>
+                  <td style="text-align: center; font-weight: bold;">:</td>
+                  <td class="pv-gender">M</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; background: #fbfcfd;">Date of Birth</td>
+                  <td style="text-align: center; font-weight: bold;">:</td>
+                  <td class="pv-dob">12/04/1984</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; background: #fbfcfd;">Class/Group</td>
+                  <td style="text-align: center; font-weight: bold;">:</td>
+                  <td class="pv-classGroup">Class / Group B</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; background: #fbfcfd;">Cadre</td>
+                  <td style="text-align: center; font-weight: bold;">:</td>
+                  <td class="pv-personalCadre">B.E.S. - BIHAR EDUCATION SERVICE/SENIOR SECONDARY TEACHER</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: bold; background: #fbfcfd;">Home District</td>
+                  <td style="text-align: center; font-weight: bold;">:</td>
+                  <td class="pv-homeDistrict">PATNA</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Solemn Declaration Paragraph -->
+            <p class="text-[12px] font-semibold mb-6">
+              I hereby declare that the above details are true to the best of my knowledge and belief.
+            </p>
+
+            <!-- Verification & Signature Block -->
+            <div class="flex justify-between items-start text-[11.5px] leading-normal pt-2">
+              <div class="space-y-1">
+                <div><strong>Place:</strong> <span class="pv-declPlace">PATNA</span></div>
+                <div><strong>Date:</strong> <span class="pv-declDate">10/01/2026</span></div>
+              </div>
+              <div class="text-left w-64 space-y-1">
+                <div class="font-bold">Signature: __________________________</div>
+                <div><strong>Name of Employee:</strong> <span class="pv-employeeName font-bold">RAMESH KUMAR</span></div>
+                <div><strong>Designation:</strong> <span class="pv-designation">BPSC SCHOOL TEACHER (SENIOR SECONDARY)</span></div>
+                <div class="leading-tight"><strong>Department:</strong> <span class="pv-department">EDUCATION DEPARTMENT, BIHAR (GOVT. UPGRADED HIGH SCHOOL, PATNA)</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Page 4 Footer -->
+          <div class="pt-2 text-[10px] leading-snug">
+            <p class="text-[9.5px] italic text-slate-800 border-t border-slate-300 pt-1.5 mb-1">
+              <strong>Note:</strong> Please sign each page of the declaration. Asset declaration form must be in A4 size white paper with computer typed (single side) in prescribed format.
+            </p>
+            <div class="text-center font-bold text-[11px] border-t border-slate-400 pt-1">
+              Page 4 of 4
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- JAVASCRIPT APPLICATION LOGIC -->
+  <script>
+    /**
+     * RAMESH KUMAR SAMPLE DATA
+     * Extracted directly from the official 4-page reference PDF
+     */
+    const sampleData = {
+      financialYear: "2025-26",
+      employeeName: "RAMESH KUMAR",
+      relationType: "son of",
+      relativeName: "LATE RAMDHANI SINGH",
+      age: "42",
+      cadre: "BIHAR EDUCATION SERVICE / SCHOOL TEACHER SERVICE",
+      designation: "BPSC SCHOOL TEACHER (SENIOR SECONDARY)",
+      department: "EDUCATION DEPARTMENT, BIHAR (GOVT. UPGRADED HIGH SCHOOL, PATNA)",
+      includeSpouse: true,
+      spouseName: "ANITA KUMARI",
+      dependents: [
+        { id: "dep_1", name: "AASTHA KUMARI" },
+        { id: "dep_2", name: "AAYUSH KUMAR" }
+      ],
+
+      movable: [
+        {
+          id: "m_cash",
+          sr: "(i)",
+          title: "Cash",
+          self: "Rs. 25,000/- Cash in hand",
+          spouse: "Rs. 10,000/- Household savings",
+          depValues: { "dep_1": "Nil", "dep_2": "Nil" }
+        },
+        {
+          id: "m_deposits",
+          sr: "(ii)",
+          title: "Deposits in Banks, Financial Institutions and Non-Banking Financial Companies",
+          self: "Rs. 3,50,000/-\nSBI Salary A/c No. 34918201948",
+          spouse: "Rs. 1,20,000/-\nPNB Savings A/c",
+          depValues: { "dep_1": "Rs. 15,000/-\nSukanya Samriddhi Yojana", "dep_2": "Nil" }
+        },
+        {
+          id: "m_bonds",
+          sr: "(iii)",
+          title: "Bonds, Debentures and Shares in Companies",
+          self: "Rs. 50,000/-\nSBI Mutual Fund SIP",
+          spouse: "Nil",
+          depValues: { "dep_1": "Nil", "dep_2": "Nil" }
+        },
+        {
+          id: "m_nss",
+          sr: "(iv)",
+          title: "Other financial institutions, NSS, Postal Savings, LIC Policies, etc.",
+          self: "Rs. 2,00,000/-\nLIC Policy No. 518392019 (SA Rs. 5 Lakhs)",
+          spouse: "Rs. 1,00,000/-\nPostal RD Scheme",
+          depValues: { "dep_1": "Nil", "dep_2": "Nil" }
+        },
+        {
+          id: "m_vehicles",
+          sr: "(v)",
+          title: "Motor Vehicles (details of make, etc.)",
+          self: "Rs. 65,000/-\nHero Splendor Plus 2021 (BR-01-DK-4521)",
+          spouse: "Nil",
+          depValues: { "dep_1": "Nil", "dep_2": "Nil" }
+        },
+        {
+          id: "m_jewellery",
+          sr: "(vi)",
+          title: "Jewellery (give details of weight and value)",
+          self: "Rs. 65,000/-\nGold Ring 10 grams",
+          spouse: "Rs. 4,50,000/-\nGold Ornaments 60 grams & Silver 250 gm",
+          depValues: { "dep_1": "Nil", "dep_2": "Nil" }
+        },
+        {
+          id: "m_other",
+          sr: "(vii)",
+          title: "Other assets, such as values of claims/interests",
+          self: "Nil\nNone",
+          spouse: "Nil",
+          depValues: { "dep_1": "Nil", "dep_2": "Nil" }
+        }
+      ],
+
+      immovable: [
+        {
+          id: "im_agri",
+          sr: "(i)",
+          title: "Agricultural Land\n• Location(s)\n• Survey number(s)\n• Extent (Total measurement)\n• Current market value",
+          self: "Loc: Mauza - Maner, Dist - Patna\nSurvey/Plot: Thana No. 45, Khata No. 52, Khesra No. 210\nExtent: 1 Bigha (Ancestral share)\nMarket Val: Rs. 18,00,000/-\nJoint ancestral property with family",
+          spouse: "Nil",
+          depValues: { "dep_1": "Nil", "dep_2": "Nil" }
+        },
+        {
+          id: "im_nonagri",
+          sr: "(ii)",
+          title: "Non-Agricultural Land\n• Location(s)\n• Survey number(s)\n• Extent (Total measurement)\n• Current market value",
+          self: "Nil",
+          spouse: "Nil",
+          depValues: { "dep_1": "Nil", "dep_2": "Nil" }
+        },
+        {
+          id: "im_buildings",
+          sr: "(iii)",
+          title: "Buildings (Commercial and residential)\n• Location(s)\n• Survey number(s)\n• Extent (Total measurement)\n• Current market value",
+          self: "Loc: Vill - Maner, Dist - Patna\nSurvey/Plot: Ward No. 6, Holding No. 24\nExtent: Residential House (1200 Sq. Ft.)\nMarket Val: Rs. 16,00,000/-\nAncestral residential house",
+          spouse: "Nil",
+          depValues: { "dep_1": "Nil", "dep_2": "Nil" }
+        },
+        {
+          id: "im_houses",
+          sr: "(iv)",
+          title: "Houses / Apartments, etc.\n• Location(s)\n• Survey / door number(s)\n• Extent (Total measurement)\n• Current market value",
+          self: "Nil",
+          spouse: "Nil",
+          depValues: { "dep_1": "Nil", "dep_2": "Nil" }
+        },
+        {
+          id: "im_others",
+          sr: "(v)",
+          title: "Others (such as interest in property)",
+          self: "Nil",
+          spouse: "Nil",
+          depValues: { "dep_1": "Nil", "dep_2": "Nil" }
+        }
+      ],
+
+      asOnDate: "10-01-2026",
+      liabilities: [
+        {
+          id: "lia_bank",
+          sr: "(a) (i)",
+          title: "Loans from Banks",
+          details: "State Bank of India - Teacher Personal Loan A/c 3819204910",
+          amount: "Rs. 2,50,000/-"
+        },
+        {
+          id: "lia_fi",
+          sr: "(ii)",
+          title: "Loans from financial institutions",
+          details: "Nil",
+          amount: "Nil"
+        },
+        {
+          id: "lia_g_accom",
+          sr: "(iii) (a)",
+          title: "Government Dues:\nDues to departments dealing with government accommodation",
+          details: "Nil\n(Not allotted)",
+          amount: "Nil"
+        },
+        {
+          id: "lia_g_water",
+          sr: "(b)",
+          title: "Dues to departments dealing with supply of water",
+          details: "Nil",
+          amount: "Nil"
+        },
+        {
+          id: "lia_g_elec",
+          sr: "(c)",
+          title: "Dues to departments dealing with supply of electricity",
+          details: "SBPDCL (Current billing cleared)",
+          amount: "Nil"
+        },
+        {
+          id: "lia_g_phone",
+          sr: "(d)",
+          title: "Dues to departments dealing with telephones",
+          details: "Nil",
+          amount: "Nil"
+        },
+        {
+          id: "lia_g_trans",
+          sr: "(e)",
+          title: "Dues to departments dealing with government transport (including aircraft and helicopters)",
+          details: "Nil",
+          amount: "Nil"
+        },
+        {
+          id: "lia_g_other",
+          sr: "(f)",
+          title: "Other dues, if any",
+          details: "Nil",
+          amount: "Nil"
+        }
+      ],
+
+      taxes: [
+        {
+          id: "tax_it",
+          sr: "(b) (i)",
+          title: "Income Tax including surcharge\n[Also indicate the assessment year upto which Income Tax Return filed. Give also Permanent Account Number (PAN)]",
+          details: "PAN: ABCPS1234K | Return filed upto Assessment Year 2025-26",
+          amount: "Nil"
+        },
+        {
+          id: "tax_wt",
+          sr: "(ii)",
+          title: "Wealth Tax\n[Also indicate the assessment year upto which Wealth Tax return filed.]",
+          details: "Not Applicable (Wealth Tax abolished)",
+          amount: "Nil"
+        },
+        {
+          id: "tax_st",
+          sr: "(iii)",
+          title: "Sales Tax\n[Only in case of proprietary business]",
+          details: "Not Applicable",
+          amount: "Nil"
+        },
+        {
+          id: "tax_pt",
+          sr: "(iv)",
+          title: "Property Tax",
+          details: "Gram Panchayat Holding Tax paid",
+          amount: "Nil"
+        }
+      ],
+
+      personal: {
+        pran: "PRAN-110034928172",
+        gender: "M",
+        dob: "12/04/1984",
+        classGroup: "Class / Group B",
+        personalCadre: "B.E.S. - BIHAR EDUCATION SERVICE/SENIOR SECONDARY TEACHER",
+        homeDistrict: "PATNA",
+        place: "PATNA",
+        date: "10/01/2026"
+      }
+    };
+
+    let appData = null;
+    const STORAGE_KEY = "bihar_asset_declaration_2025_26";
+
+    function getInitialData() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          const data = JSON.parse(saved);
+          // Migration for backwards compatibility
+          if (data.includeSpouse === undefined) data.includeSpouse = true;
+          if (!data.dependents) {
+            data.dependents = [];
+            if (data.dep1Name) data.dependents.push({ id: "dep_1", name: data.dep1Name });
+            if (data.dep2Name) data.dependents.push({ id: "dep_2", name: data.dep2Name });
+            data.movable.forEach(m => {
+              m.depValues = m.depValues || {};
+              if (m.dep1 !== undefined) m.depValues["dep_1"] = m.dep1;
+              if (m.dep2 !== undefined) m.depValues["dep_2"] = m.dep2;
+            });
+            data.immovable.forEach(im => {
+              im.depValues = im.depValues || {};
+              if (im.dep1 !== undefined) im.depValues["dep_1"] = im.dep1;
+              if (im.dep2 !== undefined) im.depValues["dep_2"] = im.dep2;
+            });
+          }
+          return data;
+        } catch (e) {
+          console.error("Local data corrupted, loading default", e);
+        }
+      }
+      return JSON.parse(JSON.stringify(sampleData));
+    }
+
+    function persistData() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+    }
+
+    function showToast(msg, isSuccess = true) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      const toastIcon = document.getElementById('toast-icon');
+
+      toastMsg.innerText = msg;
+      toastIcon.innerText = isSuccess ? '✓' : 'ℹ';
+      toastIcon.className = isSuccess ? 'text-emerald-400 font-bold' : 'text-blue-400 font-bold';
+
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3000);
+    }
+
+    /**
+     * RENDER THE FAMILY MANAGER (SPOUSE TOGGLE + DYNAMIC DEPENDANTS)
+     */
+    function renderFamilyManager() {
+      const container = document.getElementById('dependents-list-container');
+      const countBadge = document.getElementById('dep-count-badge');
+      const spouseCheckbox = document.getElementById('includeSpouse');
+      const spouseInputContainer = document.getElementById('spouse-input-container');
+      const spouseStatusBadge = document.getElementById('spouse-status-badge');
+
+      if (spouseCheckbox) spouseCheckbox.checked = !!appData.includeSpouse;
+      if (spouseStatusBadge) {
+        if (appData.includeSpouse) {
+          spouseStatusBadge.innerText = 'Active Column';
+          spouseStatusBadge.className = 'text-[10px] px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-medium';
+          spouseInputContainer.classList.remove('hidden');
+        } else {
+          spouseStatusBadge.innerText = 'Column Excluded';
+          spouseStatusBadge.className = 'text-[10px] px-2 py-0.5 rounded bg-slate-200 text-slate-600 font-medium';
+          spouseInputContainer.classList.add('hidden');
+        }
+      }
+
+      if (!container) return;
+      container.innerHTML = '';
+      const deps = appData.dependents || [];
+      countBadge.innerText = deps.length;
+
+      if (deps.length === 0) {
+        container.innerHTML = `
+          <div class="text-[11px] text-slate-400 italic p-3 bg-white border border-dashed border-slate-300 rounded text-center">
+            No dependants added. Click "+ Add Dependant" above to add children or dependent family members.
+          </div>
+        `;
+        return;
+      }
+
+      deps.forEach((dep, idx) => {
+        const row = document.createElement('div');
+        row.className = "flex items-center gap-2 bg-white p-2 border border-slate-200 rounded shadow-sm";
+        row.innerHTML = `
+          <span class="text-[11px] font-bold text-govblue-800 w-20 shrink-0">Dep-${idx + 1}:</span>
+          <input type="text" data-dep-id="${dep.id}" class="dep-name-input flex-1 text-xs p-1.5 border border-slate-300 rounded uppercase font-medium focus:ring-1 focus:ring-govblue-700" placeholder="Dependant Name" value="${dep.name || ''}">
+          <button type="button" data-remove-dep="${dep.id}" class="btn-remove-dep px-2 py-1 bg-red-50 hover:bg-red-100 text-red-600 rounded text-[11px] font-medium flex items-center gap-1 transition" title="Remove this dependant">
+            <svg class="w-3.5 h-3.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+            Remove
+          </button>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    /**
+     * BUILD DYNAMIC FORM INPUT CONTROLS
+     */
+    function buildFormControls() {
+      renderFamilyManager();
+
+      // Movable inputs
+      const mContainer = document.getElementById('movable-inputs-container');
+      mContainer.innerHTML = '';
+      appData.movable.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = "border border-slate-200 rounded-lg p-3 bg-slate-50 space-y-2";
+
+        let primaryCols = `
+          <div>
+            <label class="block text-[10px] font-semibold text-slate-600 mb-0.5">Self</label>
+            <textarea data-m="${idx}" data-field="self" rows="2" class="w-full text-xs p-1.5 border border-slate-300 rounded focus:ring-1 focus:ring-govblue-700">${item.self || ''}</textarea>
+          </div>
+        `;
+
+        if (appData.includeSpouse) {
+          primaryCols += `
+            <div>
+              <label class="block text-[10px] font-semibold text-slate-600 mb-0.5 truncate" title="${appData.spouseName || 'Spouse'}">Spouse (${appData.spouseName || 'Spouse'})</label>
+              <textarea data-m="${idx}" data-field="spouse" rows="2" class="w-full text-xs p-1.5 border border-slate-300 rounded focus:ring-1 focus:ring-govblue-700">${item.spouse || ''}</textarea>
+            </div>
+          `;
+        }
+
+        let depsHtml = '';
+        const deps = appData.dependents || [];
+        if (deps.length > 0) {
+          depsHtml = `<div class="grid grid-cols-${Math.min(deps.length, 3)} gap-2 pt-1 border-t border-slate-200">`;
+          deps.forEach((dep, dIdx) => {
+            const val = (item.depValues && item.depValues[dep.id]) || '';
+            depsHtml += `
+              <div>
+                <label class="block text-[10px] font-semibold text-slate-600 mb-0.5 truncate" title="${dep.name}">
+                  Dep-${dIdx + 1} (${dep.name || 'Dep ' + (dIdx + 1)})
+                </label>
+                <input type="text" data-m-dep="${dep.id}" data-idx="${idx}" class="w-full text-xs p-1.5 border border-slate-300 rounded" value="${val}">
+              </div>
+            `;
+          });
+          depsHtml += `</div>`;
+        }
+
+        card.innerHTML = `
+          <div class="flex items-center justify-between border-b border-slate-200 pb-1">
+            <span class="text-xs font-bold text-slate-800">${item.sr} ${item.title.split('\n')[0]}</span>
+            <button type="button" class="btn-quick-nil text-[10px] text-govblue-800 hover:underline" data-target="m" data-idx="${idx}">Set All Nil</button>
+          </div>
+          <div class="grid grid-cols-${appData.includeSpouse ? '2' : '1'} gap-2">
+            ${primaryCols}
+          </div>
+          ${depsHtml}
+        `;
+        mContainer.appendChild(card);
+      });
+
+      // Immovable inputs
+      const imContainer = document.getElementById('immovable-inputs-container');
+      imContainer.innerHTML = '';
+      appData.immovable.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = "border border-slate-200 rounded-lg p-3 bg-slate-50 space-y-2";
+
+        const selfHtml = `
+          <div>
+            <label class="block text-[10px] font-semibold text-slate-600 mb-0.5">Self (Location, Survey/Khata/Khesra, Extent, Market Val)</label>
+            <textarea data-im="${idx}" data-field="self" rows="3" class="w-full text-xs p-1.5 border border-slate-300 rounded focus:ring-1 focus:ring-govblue-700">${item.self || ''}</textarea>
+          </div>
+        `;
+
+        const subCols = [];
+        if (appData.includeSpouse) {
+          subCols.push(`
+            <div>
+              <label class="block text-[10px] font-semibold text-slate-600 mb-0.5 truncate" title="${appData.spouseName || 'Spouse'}">Spouse (${appData.spouseName || 'Spouse'})</label>
+              <input type="text" data-im="${idx}" data-field="spouse" class="w-full text-xs p-1.5 border border-slate-300 rounded" value="${item.spouse || ''}">
+            </div>
+          `);
+        }
+
+        (appData.dependents || []).forEach((dep, dIdx) => {
+          const val = (item.depValues && item.depValues[dep.id]) || '';
+          subCols.push(`
+            <div>
+              <label class="block text-[10px] font-semibold text-slate-600 mb-0.5 truncate" title="${dep.name}">
+                Dep-${dIdx + 1} (${dep.name || 'Dep ' + (dIdx + 1)})
+              </label>
+              <input type="text" data-im-dep="${dep.id}" data-idx="${idx}" class="w-full text-xs p-1.5 border border-slate-300 rounded" value="${val}">
+            </div>
+          `);
+        });
+
+        let familyGrid = '';
+        if (subCols.length > 0) {
+          familyGrid = `
+            <div class="grid grid-cols-${Math.min(subCols.length, 3)} gap-2 pt-1 border-t border-slate-200">
+              ${subCols.join('')}
+            </div>
+          `;
+        }
+
+        card.innerHTML = `
+          <div class="flex items-center justify-between border-b border-slate-200 pb-1">
+            <span class="text-xs font-bold text-slate-800">${item.sr} ${item.title.split('\n')[0]}</span>
+            <button type="button" class="btn-quick-nil text-[10px] text-govblue-800 hover:underline" data-target="im" data-idx="${idx}">Set All Nil</button>
+          </div>
+          ${selfHtml}
+          ${familyGrid}
+        `;
+        imContainer.appendChild(card);
+      });
+
+      // Liabilities inputs
+      const liaContainer = document.getElementById('liabilities-inputs-container');
+      liaContainer.innerHTML = '';
+      appData.liabilities.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = "border border-slate-200 rounded p-2.5 bg-slate-50 space-y-1.5";
+        card.innerHTML = `
+          <div class="text-xs font-semibold text-slate-800">${item.sr} ${item.title.replace(/\n/g, ' ')}</div>
+          <div class="grid grid-cols-3 gap-2">
+            <div class="col-span-2">
+              <input type="text" data-lia="${idx}" data-field="details" class="w-full text-xs p-1.5 border border-slate-300 rounded" placeholder="Bank/Dept Details" value="${item.details || ''}">
+            </div>
+            <div>
+              <input type="text" data-lia="${idx}" data-field="amount" class="w-full text-xs p-1.5 border border-slate-300 rounded font-semibold" placeholder="Amount (or Nil)" value="${item.amount || ''}">
+            </div>
+          </div>
+        `;
+        liaContainer.appendChild(card);
+      });
+
+      // Taxes inputs
+      const taxContainer = document.getElementById('taxes-inputs-container');
+      taxContainer.innerHTML = '';
+      appData.taxes.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = "border border-slate-200 rounded p-2 bg-white space-y-1";
+        card.innerHTML = `
+          <div class="text-[11px] font-semibold text-slate-700">${item.sr} ${item.title.split('\n')[0]}</div>
+          <div class="grid grid-cols-3 gap-2">
+            <div class="col-span-2">
+              <input type="text" data-tax="${idx}" data-field="details" class="w-full text-xs p-1.5 border border-slate-300 rounded" placeholder="Details/Status" value="${item.details || ''}">
+            </div>
+            <div>
+              <input type="text" data-tax="${idx}" data-field="amount" class="w-full text-xs p-1.5 border border-slate-300 rounded" placeholder="Amount (e.g. Nil)" value="${item.amount || ''}">
+            </div>
+          </div>
+        `;
+        taxContainer.appendChild(card);
+      });
+
+      // Populate Top Personal Inputs
+      document.getElementById('financialYear').value = appData.financialYear || '2025-26';
+      document.getElementById('employeeName').value = appData.employeeName || '';
+      document.getElementById('relationType').value = appData.relationType || 'son of';
+      document.getElementById('relativeName').value = appData.relativeName || '';
+      document.getElementById('age').value = appData.age || '';
+      document.getElementById('designation').value = appData.designation || '';
+      document.getElementById('cadre').value = appData.cadre || '';
+      document.getElementById('department').value = appData.department || '';
+      document.getElementById('spouseName').value = appData.spouseName || '';
+
+      document.getElementById('asOnDate').value = appData.asOnDate || '10-01-2026';
+
+      // Section C
+      document.getElementById('pranNo').value = appData.personal.pran || '';
+      document.getElementById('gender').value = appData.personal.gender || 'M';
+      document.getElementById('dob').value = appData.personal.dob || '';
+      document.getElementById('classGroup').value = appData.personal.classGroup || '';
+      document.getElementById('personalCadre').value = appData.personal.personalCadre || '';
+      document.getElementById('homeDistrict').value = appData.personal.homeDistrict || '';
+      document.getElementById('declPlace').value = appData.personal.place || 'PATNA';
+      document.getElementById('declDate').value = appData.personal.date || '10/01/2026';
+    }
+
+    /**
+     * DYNAMIC TABLE HEADER BUILDER FOR PAGES 1, 2, AND 3
+     */
+    function getDynamicTableHeader() {
+      const hasSpouse = !!appData.includeSpouse;
+      const deps = appData.dependents || [];
+      const dynamicColsCount = (hasSpouse ? 1 : 0) + deps.length;
+
+      let dynWidth = '44%';
+      if (dynamicColsCount > 0) {
+        dynWidth = (44 / dynamicColsCount).toFixed(1) + '%';
+      }
+
+      if (dynamicColsCount === 0) {
+        return `
+          <tr>
+            <th style="width: 8%;">Sr.<br>No.</th>
+            <th style="width: 46%;">Description</th>
+            <th style="width: 46%;">Self</th>
+          </tr>
+        `;
+      }
+
+      let html = `
+        <tr>
+          <th style="width: 7%;">Sr.<br>No.</th>
+          <th style="width: 27%;">Description</th>
+          <th style="width: 22%;">Self</th>
+      `;
+
+      if (hasSpouse) {
+        const spTitle = appData.spouseName ? `(${appData.spouseName})` : '(Spouse)';
+        html += `
+          <th style="width: ${dynWidth};">Spouse<br><span class="font-normal text-[10px] pv-spouseHeader">${spTitle}</span></th>
+        `;
+      }
+
+      deps.forEach((d, i) => {
+        const dTitle = d.name ? `(${d.name})` : `(Dependant-${i + 1})`;
+        html += `
+          <th style="width: ${dynWidth};">Dependant-${i + 1}<br><span class="font-normal text-[10px]">${dTitle}</span></th>
+        `;
+      });
+
+      html += `</tr>`;
+      return html;
+    }
+
+    function buildRowCells(item) {
+      let cells = `
+        <td class="text-center font-bold">${item.sr}</td>
+        <td>${item.title.replace(/\n/g, '<br>')}</td>
+        <td style="white-space: pre-line;">${item.self || 'Nil'}</td>
+      `;
+      if (appData.includeSpouse) {
+        cells += `<td style="white-space: pre-line;">${item.spouse || 'Nil'}</td>`;
+      }
+      (appData.dependents || []).forEach(dep => {
+        const val = (item.depValues && item.depValues[dep.id]) || 'Nil';
+        cells += `<td style="white-space: pre-line;">${val}</td>`;
+      });
+      return cells;
+    }
+
+    /**
+     * RENDER THE LIVE 4-PAGE PREVIEW
+     */
+    function renderPreview() {
+      // 1. Static Text Elements
+      document.querySelectorAll('.pv-financialYear').forEach(el => el.innerText = appData.financialYear || '2025-26');
+      document.querySelectorAll('.pv-employeeName').forEach(el => el.innerText = appData.employeeName || '___________');
+      document.querySelectorAll('.pv-relationType').forEach(el => el.innerText = appData.relationType || 'son of');
+      document.querySelectorAll('.pv-relativeName').forEach(el => el.innerText = appData.relativeName || '___________');
+      document.querySelectorAll('.pv-age').forEach(el => el.innerText = appData.age || '__');
+      document.querySelectorAll('.pv-cadre').forEach(el => el.innerText = appData.cadre || '___________');
+      document.querySelectorAll('.pv-designation').forEach(el => el.innerText = appData.designation || '___________');
+      document.querySelectorAll('.pv-department').forEach(el => el.innerText = appData.department || '___________');
+
+      // Adaptive Preamble Text
+      let familyPreamble = "myself";
+      const depCount = (appData.dependents || []).length;
+      if (appData.includeSpouse && depCount > 0) {
+        familyPreamble = "myself, my spouse and dependants*";
+      } else if (appData.includeSpouse) {
+        familyPreamble = "myself and my spouse*";
+      } else if (depCount > 0) {
+        familyPreamble = "myself and my dependants*";
+      } else {
+        familyPreamble = "myself*";
+      }
+      document.querySelectorAll('.pv-familyPreamble').forEach(el => el.innerText = familyPreamble);
+
+      document.querySelectorAll('.pv-asOnDate').forEach(el => el.innerText = appData.asOnDate || '10-01-2026');
+
+      // Render Dynamic Table Headers
+      const theadHtml = getDynamicTableHeader();
+      document.getElementById('pv-movable-thead').innerHTML = theadHtml;
+      document.getElementById('pv-immovable-thead-page2').innerHTML = theadHtml;
+      document.getElementById('pv-immovable-thead-page3').innerHTML = theadHtml;
+
+      // 2. Movable Rows (Page 1)
+      const mTable = document.getElementById('pv-movable-rows');
+      mTable.innerHTML = '';
+      appData.movable.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = buildRowCells(item);
+        mTable.appendChild(tr);
+      });
+
+      // 3. Immovable Rows (Page 2: items 0, 1, 2)
+      const imTableP2 = document.getElementById('pv-immovable-rows-page2');
+      imTableP2.innerHTML = '';
+      for (let i = 0; i <= 2; i++) {
+        const item = appData.immovable[i];
+        if (!item) continue;
+        const tr = document.createElement('tr');
+        tr.innerHTML = buildRowCells(item);
+        imTableP2.appendChild(tr);
+      }
+
+      // 4. Immovable Rows (Page 3: items 3, 4)
+      const imTableP3 = document.getElementById('pv-immovable-rows-page3');
+      imTableP3.innerHTML = '';
+      for (let i = 3; i < appData.immovable.length; i++) {
+        const item = appData.immovable[i];
+        if (!item) continue;
+        const tr = document.createElement('tr');
+        tr.innerHTML = buildRowCells(item);
+        imTableP3.appendChild(tr);
+      }
+
+      // 5. Liabilities Rows (Page 3)
+      const liaTable = document.getElementById('pv-liabilities-rows');
+      liaTable.innerHTML = '';
+      appData.liabilities.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="text-center font-bold">${item.sr}</td>
+          <td>${item.title.replace(/\n/g, '<br>')}</td>
+          <td style="white-space: pre-line;">${item.details || 'Nil'}</td>
+          <td class="text-center font-semibold" style="white-space: pre-line;">${item.amount || 'Nil'}</td>
+        `;
+        liaTable.appendChild(tr);
+      });
+
+      // 6. Taxes Rows (Page 4)
+      const taxTable = document.getElementById('pv-taxes-rows');
+      taxTable.innerHTML = '';
+      appData.taxes.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="text-center font-bold">${item.sr}</td>
+          <td>${item.title.replace(/\n/g, '<br>')}</td>
+          <td style="white-space: pre-line;">${item.details || 'Nil'}</td>
+          <td class="text-center font-semibold">${item.amount || 'Nil'}</td>
+        `;
+        taxTable.appendChild(tr);
+      });
+
+      // 7. Section C & Verification
+      document.querySelector('.pv-pran').innerText = appData.personal.pran || 'Nil';
+      document.querySelector('.pv-gender').innerText = appData.personal.gender || 'M';
+      document.querySelector('.pv-dob').innerText = appData.personal.dob || '';
+      document.querySelector('.pv-classGroup').innerText = appData.personal.classGroup || '';
+      document.querySelector('.pv-personalCadre').innerText = appData.personal.personalCadre || appData.cadre || '';
+      document.querySelector('.pv-homeDistrict').innerText = appData.personal.homeDistrict || '';
+
+      document.querySelector('.pv-declPlace').innerText = appData.personal.place || 'PATNA';
+      document.querySelector('.pv-declDate').innerText = appData.personal.date || '10/01/2026';
+    }
+
+    /**
+     * ATTACH EVENT LISTENERS
+     */
+    function attachListeners() {
+      const form = document.getElementById('asset-form');
+
+      // Add Dependant Button
+      document.getElementById('btn-add-dependent').addEventListener('click', () => {
+        const newIndex = (appData.dependents || []).length + 1;
+        const newId = 'dep_' + Date.now();
+        const defaultName = `DEPENDANT ${newIndex}`;
+        appData.dependents.push({ id: newId, name: defaultName });
+
+        appData.movable.forEach(m => {
+          if (!m.depValues) m.depValues = {};
+          m.depValues[newId] = 'Nil';
+        });
+        appData.immovable.forEach(im => {
+          if (!im.depValues) im.depValues = {};
+          im.depValues[newId] = 'Nil';
+        });
+
+        persistData();
+        buildFormControls();
+        renderPreview();
+        showToast(`Dependant-${newIndex} column added`);
+      });
+
+      // Remove Dependant Button Delegation
+      document.addEventListener('click', (e) => {
+        const removeBtn = e.target.closest('.btn-remove-dep');
+        if (removeBtn) {
+          const depId = removeBtn.dataset.removeDep;
+          appData.dependents = appData.dependents.filter(d => d.id !== depId);
+          appData.movable.forEach(m => {
+            if (m.depValues) delete m.depValues[depId];
+          });
+          appData.immovable.forEach(im => {
+            if (im.depValues) delete im.depValues[depId];
+          });
+
+          persistData();
+          buildFormControls();
+          renderPreview();
+          showToast('Dependant removed');
+        }
+      });
+
+      // Spouse Checkbox Toggle
+      document.getElementById('includeSpouse').addEventListener('change', (e) => {
+        appData.includeSpouse = e.target.checked;
+        persistData();
+        buildFormControls();
+        renderPreview();
+        showToast(appData.includeSpouse ? 'Spouse column enabled' : 'Spouse column removed');
+      });
+
+      // Dependant Name Live Input
+      document.addEventListener('input', (e) => {
+        if (e.target.classList.contains('dep-name-input')) {
+          const depId = e.target.dataset.depId;
+          const dep = (appData.dependents || []).find(d => d.id === depId);
+          if (dep) {
+            dep.name = e.target.value.toUpperCase();
+            persistData();
+            renderPreview();
+          }
+        }
+      });
+
+      // Form Delegated Two-Way Binding
+      form.addEventListener('input', (e) => {
+        const target = e.target;
+        const val = target.value;
+
+        // Top level fields
+        if (target.id && appData.hasOwnProperty(target.id)) {
+          appData[target.id] = val;
+        }
+
+        // Section C Personal fields
+        if (target.id === 'pranNo') appData.personal.pran = val;
+        if (target.id === 'gender') appData.personal.gender = val;
+        if (target.id === 'dob') appData.personal.dob = val;
+        if (target.id === 'classGroup') appData.personal.classGroup = val;
+        if (target.id === 'personalCadre') appData.personal.personalCadre = val;
+        if (target.id === 'homeDistrict') appData.personal.homeDistrict = val;
+        if (target.id === 'declPlace') appData.personal.place = val;
+        if (target.id === 'declDate') appData.personal.date = val;
+        if (target.id === 'asOnDate') appData.asOnDate = val;
+
+        // Movable Array inputs
+        if (target.dataset.m !== undefined) {
+          const idx = parseInt(target.dataset.m);
+          const field = target.dataset.field;
+          appData.movable[idx][field] = val;
+        }
+
+        // Movable Dependant inputs
+        if (target.dataset.mDep !== undefined) {
+          const depId = target.dataset.mDep;
+          const idx = parseInt(target.dataset.idx);
+          if (!appData.movable[idx].depValues) appData.movable[idx].depValues = {};
+          appData.movable[idx].depValues[depId] = val;
+        }
+
+        // Immovable Array inputs
+        if (target.dataset.im !== undefined) {
+          const idx = parseInt(target.dataset.im);
+          const field = target.dataset.field;
+          appData.immovable[idx][field] = val;
+        }
+
+        // Immovable Dependant inputs
+        if (target.dataset.imDep !== undefined) {
+          const depId = target.dataset.imDep;
+          const idx = parseInt(target.dataset.idx);
+          if (!appData.immovable[idx].depValues) appData.immovable[idx].depValues = {};
+          appData.immovable[idx].depValues[depId] = val;
+        }
+
+        // Liabilities Array inputs
+        if (target.dataset.lia !== undefined) {
+          const idx = parseInt(target.dataset.lia);
+          const field = target.dataset.field;
+          appData.liabilities[idx][field] = val;
+        }
+
+        // Taxes Array inputs
+        if (target.dataset.tax !== undefined) {
+          const idx = parseInt(target.dataset.tax);
+          const field = target.dataset.field;
+          appData.taxes[idx][field] = val;
+        }
+
+        persistData();
+        renderPreview();
+      });
+
+      // Quick "Set All Nil" for an individual asset card
+      document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('btn-quick-nil')) {
+          const type = e.target.dataset.target;
+          const idx = parseInt(e.target.dataset.idx);
+          const targetList = type === 'm' ? appData.movable : appData.immovable;
+          const item = targetList[idx];
+
+          item.self = 'Nil';
+          if (appData.includeSpouse) item.spouse = 'Nil';
+          if (!item.depValues) item.depValues = {};
+          (appData.dependents || []).forEach(d => {
+            item.depValues[d.id] = 'Nil';
+          });
+
+          persistData();
+          buildFormControls();
+          renderPreview();
+          showToast(`Row marked as 'Nil'`);
+        }
+      });
+
+      // Stepper Tab Switching
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetTabId = btn.dataset.tab;
+          tabBtns.forEach(b => {
+            b.classList.remove('bg-govblue-800', 'text-white', 'shadow-sm', 'active');
+            b.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+          });
+          btn.classList.add('bg-govblue-800', 'text-white', 'shadow-sm', 'active');
+          btn.classList.remove('bg-white', 'text-slate-600', 'border');
+
+          document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.add('hidden'));
+          document.getElementById(targetTabId).classList.remove('hidden');
+        });
+      });
+
+      // Prev/Next Step Buttons
+      const stepOrder = ['tab-1', 'tab-2', 'tab-3', 'tab-4', 'tab-5'];
+      document.getElementById('btn-next-step').addEventListener('click', () => {
+        const activeTab = document.querySelector('.tab-btn.active').dataset.tab;
+        const currentIdx = stepOrder.indexOf(activeTab);
+        if (currentIdx < stepOrder.length - 1) {
+          const nextBtn = document.querySelector(`[data-tab="${stepOrder[currentIdx + 1]}"]`);
+          nextBtn.click();
+        }
+      });
+      document.getElementById('btn-prev-step').addEventListener('click', () => {
+        const activeTab = document.querySelector('.tab-btn.active').dataset.tab;
+        const currentIdx = stepOrder.indexOf(activeTab);
+        if (currentIdx > 0) {
+          const prevBtn = document.querySelector(`[data-tab="${stepOrder[currentIdx - 1]}"]`);
+          prevBtn.click();
+        }
+      });
+
+      // Load Sample Data
+      document.getElementById('btn-load-sample').addEventListener('click', () => {
+        appData = JSON.parse(JSON.stringify(sampleData));
+        persistData();
+        buildFormControls();
+        renderPreview();
+        showToast("Ramesh Kumar (BPSC Teacher) official sample loaded!");
+      });
+
+      // Fill Empty Fields with "Nil"
+      document.getElementById('btn-fill-nil').addEventListener('click', () => {
+        appData.movable.forEach(m => {
+          if (!m.self || m.self.trim() === '') m.self = 'Nil';
+          if (appData.includeSpouse && (!m.spouse || m.spouse.trim() === '')) m.spouse = 'Nil';
+          if (!m.depValues) m.depValues = {};
+          (appData.dependents || []).forEach(d => {
+            if (!m.depValues[d.id] || m.depValues[d.id].trim() === '') m.depValues[d.id] = 'Nil';
+          });
+        });
+
+        appData.immovable.forEach(im => {
+          if (!im.self || im.self.trim() === '') im.self = 'Nil';
+          if (appData.includeSpouse && (!im.spouse || im.spouse.trim() === '')) im.spouse = 'Nil';
+          if (!im.depValues) im.depValues = {};
+          (appData.dependents || []).forEach(d => {
+            if (!im.depValues[d.id] || im.depValues[d.id].trim() === '') im.depValues[d.id] = 'Nil';
+          });
+        });
+
+        appData.liabilities.forEach(l => {
+          if (!l.details || l.details.trim() === '') l.details = 'Nil';
+          if (!l.amount || l.amount.trim() === '') l.amount = 'Nil';
+        });
+
+        appData.taxes.forEach(t => {
+          if (!t.details || t.details.trim() === '') t.details = 'Nil';
+          if (!t.amount || t.amount.trim() === '') t.amount = 'Nil';
+        });
+
+        persistData();
+        buildFormControls();
+        renderPreview();
+        showToast("All blank asset & liability fields filled with 'Nil'");
+      });
+
+      // Clear Confirmation Modal Controls
+      const modal = document.getElementById('confirm-modal');
+      document.getElementById('btn-clear-modal').addEventListener('click', () => {
+        modal.classList.remove('hidden');
+      });
+      document.getElementById('modal-cancel-btn').addEventListener('click', () => {
+        modal.classList.add('hidden');
+      });
+      document.getElementById('modal-confirm-btn').addEventListener('click', () => {
+        modal.classList.add('hidden');
+        appData = {
+          financialYear: "2025-26",
+          employeeName: "",
+          relationType: "son of",
+          relativeName: "",
+          age: "",
+          cadre: "",
+          designation: "",
+          department: "",
+          includeSpouse: true,
+          spouseName: "",
+          dependents: [
+            { id: "dep_1", name: "" }
+          ],
+          movable: sampleData.movable.map(m => ({ ...m, self: '', spouse: '', depValues: {} })),
+          immovable: sampleData.immovable.map(im => ({ ...im, self: '', spouse: '', depValues: {} })),
+          asOnDate: "10-01-2026",
+          liabilities: sampleData.liabilities.map(l => ({ ...l, details: '', amount: '' })),
+          taxes: sampleData.taxes.map(t => ({ ...t, details: '', amount: '' })),
+          personal: {
+            pran: "",
+            gender: "M",
+            dob: "",
+            classGroup: "",
+            personalCadre: "",
+            homeDistrict: "",
+            place: "",
+            date: ""
+          }
+        };
+        persistData();
+        buildFormControls();
+        renderPreview();
+        showToast("Form cleared to blank template", false);
+      });
+
+      // View Switcher Buttons
+      const formPane = document.getElementById('form-pane');
+      const previewPane = document.getElementById('preview-pane');
+
+      const splitBtn = document.getElementById('btn-view-split');
+      const formOnlyBtn = document.getElementById('btn-view-form');
+      const prevOnlyBtn = document.getElementById('btn-view-preview');
+
+      function resetViewBtns() {
+        [splitBtn, formOnlyBtn, prevOnlyBtn].forEach(b => {
+          b.className = "px-2.5 py-1 rounded text-slate-300 hover:text-white transition";
+        });
+      }
+
+      splitBtn.addEventListener('click', () => {
+        resetViewBtns();
+        splitBtn.className = "px-2.5 py-1 rounded bg-amber-400 text-slate-900 font-semibold transition";
+        formPane.classList.remove('hidden', 'w-full');
+        formPane.classList.add('w-full', 'md:w-1/2', 'lg:w-5/12');
+        previewPane.classList.remove('hidden', 'w-full');
+        previewPane.classList.add('w-full', 'md:w-1/2', 'lg:w-7/12');
+      });
+
+      formOnlyBtn.addEventListener('click', () => {
+        resetViewBtns();
+        formOnlyBtn.className = "px-2.5 py-1 rounded bg-amber-400 text-slate-900 font-semibold transition";
+        previewPane.classList.add('hidden');
+        formPane.classList.remove('hidden', 'md:w-1/2', 'lg:w-5/12');
+        formPane.classList.add('w-full');
+      });
+
+      prevOnlyBtn.addEventListener('click', () => {
+        resetViewBtns();
+        prevOnlyBtn.className = "px-2.5 py-1 rounded bg-amber-400 text-slate-900 font-semibold transition";
+        formPane.classList.add('hidden');
+        previewPane.classList.remove('hidden', 'md:w-1/2', 'lg:w-7/12');
+        previewPane.classList.add('w-full');
+      });
+
+      // html2pdf direct PDF Download
+      document.getElementById('btn-download-pdf').addEventListener('click', () => {
+        const element = document.getElementById('pdf-export-content');
+        const filename = `${(appData.employeeName || 'Declaration').replace(/\s+/g, '_')}_Declaration_${appData.financialYear || '2025-26'}.pdf`;
+
+        showToast("Generating PDF document...", true);
+
+        const opt = {
+          margin: [8, 10, 8, 10],
+          filename: filename,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true, letterRendering: true, scrollY: 0 },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+          pagebreak: { mode: ['css', 'legacy'] }
+        };
+
+        if (window.html2pdf) {
+          html2pdf().set(opt).from(element).save().then(() => {
+            showToast("PDF downloaded successfully!");
+          }).catch(err => {
+            console.error(err);
+            window.print();
+          });
+        } else {
+          window.print();
+        }
+      });
+    }
+
+    // Initialize application on page load
+    window.onload = function() {
+      appData = getInitialData();
+      buildFormControls();
+      renderPreview();
+      attachListeners();
+    };
+  </script>
+</body>
+</html>
+```
